@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="bartenders_and_more"
+        android:label="Bartenders y More"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
