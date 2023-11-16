@@ -99,14 +99,17 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
           WalkthroughPage(
             title: 'Welcome to Bartenders and More!',
             content: 'Unlock the best party experiences! Find and book professional bartenders, servers, and more to elevate your events.',
+            imagePath: 'assets/images/walkthrough1.png',
           ),
           WalkthroughPage(
             title: 'Seamless Hiring, Unforgettable Parties',
             content: 'Browse profiles, read reviews, and hire vetted professionals with ease. Make your next event a memorable one with the right staff.',
+            imagePath: 'assets/images/walkthrough2.png',
           ),
           WalkthroughPage(
             title: 'Flexible Work, Instant Pay',
             content: 'Join our community of service professionals. Enjoy the freedom to work events that fit your schedule and get paid quickly.',
+            imagePath: 'assets/images/walkthrough3.png',
           ),
         ],
           ),

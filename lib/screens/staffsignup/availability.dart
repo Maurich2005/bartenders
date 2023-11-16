@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
+class AvailabilityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,35 +12,35 @@ class SignInScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Center(
-                child: Image.asset(
-                  'assets/images/appicon.png', // Use the exact path of your image asset
-                  width: 250, // Adjust the size as needed
-                  height: 250, // Adjust the size as needed
-                ),
-              ),
-              SizedBox(height: 10),
+              SizedBox(height: 50),
               Text(
-                'Welcome Back!',
+                'Your Availability',
                 style: TextStyle(color: Colors.white, fontSize: 28),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10),
               Text(
-                'Please enter your login details below.',
+                'Please enter your availability',
                 style: TextStyle(color: Colors.grey, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 30),
               Text(
-                'Email',
+                'What days of the week are you available?',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              SizedBox(height: 10),
+              buildDropdownField(),
+              SizedBox(height: 30),
+              Text(
+                'What hours are you available to work?',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               SizedBox(height: 10),
               TextField(
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: '8:00 AM - 9:00 PM',
                   hintStyle: TextStyle(color: Colors.grey),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
@@ -52,7 +52,7 @@ class SignInScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'Password',
+                'What is Your Hourly Rate',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               SizedBox(height: 10),
@@ -60,7 +60,7 @@ class SignInScreen extends StatelessWidget {
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: 'Enter your password',
+                  hintText: "20/Hr",
                   hintStyle: TextStyle(color: Colors.grey),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
@@ -68,27 +68,49 @@ class SignInScreen extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  suffixIcon: Icon(Icons.visibility_off, color: Colors.grey),
                 ),
               ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Checkbox(value: false, onChanged: (bool? value) {}),
-                      Text('Keep me logged In', style: TextStyle(color: Colors.grey)),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/sendVerificationForgotPassword');
-                    },
-                    child: Text('Forgot password?', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, decoration: TextDecoration.underline)),
-                  ),
-                ],
+              SizedBox(height: 20),
+              Text(
+                'Service Area',
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
+              SizedBox(height: 10),
+              TextField(
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Miami,Fl',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Unavailable Dates',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Date selector',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
               Container(
                 width: double.infinity, // Full-width button
                 height: 48, // Fixed height
@@ -106,12 +128,13 @@ class SignInScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, '/backgroundCheck');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min, // Use only the minimum space needed
                     children: <Widget>[
                       Text(
-                        'Log in to Your Account',
+                        'Next',
                         style: TextStyle(
                           color: Colors.black, // Set the text color to black
                           fontSize: 16,
@@ -135,33 +158,40 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Don't have an account? ",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/join'); // Replace '/signin' with your route's name to sign-in screen
-                  },
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                )
-              ],
-            ),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget buildDropdownField() {
+  List<String> items = ['Monday', 'Tuesday', 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday']; // Define gender options
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
+    decoration: BoxDecoration(
+      color: Colors.grey[850],
+      border: Border.all(color: Colors.grey),
+      borderRadius: BorderRadius.circular(5),
+    ),
+    child: DropdownButtonHideUnderline(
+      child: DropdownButton<String>(
+        isExpanded: true,
+        value: items.first,
+        style: TextStyle(color: Colors.white),
+        dropdownColor: Colors.black,
+        items: items.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: (newValue) {
+          // Handle change, you might need to set state if inside a StatefulWidget
+        },
+      ),
+    ),
+  );
+}
+
 }

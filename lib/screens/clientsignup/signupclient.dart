@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:bartenders_and_more/utilities.dart';
 
-class SignUpStaffScreen extends StatelessWidget {
+class SignUpClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,35 +15,73 @@ class SignUpStaffScreen extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 100),
               Text(
-                'Join Our Talent Network',
+                'Create Your Account',
                 style: TextStyle(color: Colors.white, fontSize: 28),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10),
               Text(
-                'Ready to start working exciting events? Sign up to get started!',
+                'Start planning your event by signing up below.',
                 style: TextStyle(color: Colors.grey, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 30),
-              Text(
-                'Name',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  hintText: 'Enter your name',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
+              SignInButtons(),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'First Name',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintText: 'Enter your first name',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  SizedBox(width: 10), // Space between the two text fields
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Last Name',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintText: 'Enter your last name',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                ],
+              ), 
               SizedBox(height: 20),
               Text(
                 'Email',
@@ -101,12 +140,13 @@ class SignUpStaffScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, '/emailVerification');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min, // Use only the minimum space needed
                     children: <Widget>[
                       Text(
-                        'Join Now',
+                        'Sign Up',
                         style: TextStyle(
                           color: Colors.black, // Set the text color to black
                           fontSize: 16,
