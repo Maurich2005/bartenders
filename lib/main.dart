@@ -17,6 +17,7 @@ import 'package:bartenders_and_more/screens/verificationforgotpassword.dart';
 import 'package:bartenders_and_more/screens/createnewpassword.dart';
 import 'package:bartenders_and_more/screens/staffsignup/availability.dart';
 import 'package:bartenders_and_more/screens/staffsignup/backgroundcheck.dart';
+import 'package:bartenders_and_more/screens/clientscreens/homeclient.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,23 +29,28 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
       routes: {
         '/walkthrough': (context) => WalkthroughScreen(),
+        ///
         '/signin': (context) => SignInScreen(),
         '/join': (context) => JoinAsRoleScreen(),
+        ///
         '/joinClient': (context) => LocationScreen(),
-        '/joinStaff': (context) => LocationScreenStaff(),
         '/signupClient': (context) => SignUpClientScreen(),
-        '/signupStaff': (context) => SignUpStaffScreen(),
-        '/emailVerification': (context) => EmailVerificationScreen(),
-        '/emailVerificationStaff': (context) => EmailVerificationStaffScreen(),
         '/termsClient': (context) => TermsConditionsClientScreen(),
+        '/emailVerification': (context) => EmailVerificationScreen(),
+        ///
+        '/joinStaff': (context) => LocationScreenStaff(),
+        '/signupStaff': (context) => SignUpStaffScreen(),
+        '/emailVerificationStaff': (context) => EmailVerificationStaffScreen(),
         '/personalDetails': (context) => PersonalDetailsScreen(),
         '/workDetails': (context) => WorkDetailsScreen(),
+        '/availability': (context) => AvailabilityScreen(),
+        '/backgroundCheck': (context) => BackgroundCheckScreen(),
+        ///
         '/sendVerificationForgotPassword': (context) => ForgotPasswordScreen(),
         '/emailVerificationForgotPassword': (context) => EmailVerificationForgotScreen(),
         '/createnewpassword': (context) => CreateNewPassword(),
-        '/availability': (context) => AvailabilityScreen(),
-        '/backgroundCheck': (context) => BackgroundCheckScreen(),
-        // Define other routes here
+        ///
+        '/homeClient': (context) => HomeClientScreen(),
       },
     );
   }

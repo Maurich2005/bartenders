@@ -104,7 +104,7 @@ class TermsConditionsClientScreen extends StatelessWidget {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Handle Accept action
+                          Navigator.pushNamed(context, '/homeClient');
                         },
                         child: Text(
                           'Accept',
