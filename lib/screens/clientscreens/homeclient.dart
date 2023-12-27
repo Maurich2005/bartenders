@@ -1,171 +1,5 @@
 import 'package:flutter/material.dart';
-
-class PartyTypeCard extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isSelected;
-  final VoidCallback onSelect;
-
-  const PartyTypeCard({
-    Key? key,
-    required this.icon,
-    required this.label,
-    required this.isSelected,
-    required this.onSelect,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onSelect,
-      child: Container(
-        width: 100, // Adjust the width based on your UI design
-        padding: EdgeInsets.symmetric(horizontal: 8), // Add padding as needed
-        margin: EdgeInsets.all(4), // Add margin as needed
-        decoration: BoxDecoration(
-          border: Border.all(color: isSelected ? const Color.fromARGB(255, 252, 207, 72) : Colors.grey),
-          borderRadius: BorderRadius.circular(8), // Match to your design
-          // Gradient border when selected
-          
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(icon, size: 40, color: Colors.white), // Icon size and color can be adjusted
-            Text(label, style: TextStyle(color: Colors.white)),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-class ServicesGrid extends StatefulWidget {
-  final Function(String, double, IconData) updateSelectedServices;
-
-  ServicesGrid({Key? key, required this.updateSelectedServices}) : super(key: key);
-  @override
-  _ServicesGridState createState() => _ServicesGridState();
-}
-
-class _ServicesGridState extends State<ServicesGrid> {
-  final List<Map<String, dynamic>> services = [
-    {'icon': Icons.local_bar, 'label': 'Bartender', 'isSelected': true},
-    {'icon': Icons.restaurant, 'label': 'Server', 'isSelected': false},
-    {'icon': Icons.kitchen, 'label': 'Chef', 'isSelected': false},
-    {'icon': Icons.music_note, 'label': 'DJ', 'isSelected': false},
-    {'icon': Icons.event, 'label': 'Planner', 'isSelected': false},
-    {'icon': Icons.security, 'label': 'Security', 'isSelected': false},
-    {'icon': Icons.star, 'label': 'Host', 'isSelected': false},
-    {'icon': Icons.cleaning_services, 'label': 'Clean-up', 'isSelected': false},
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true, // Use it to prevent the GridView from expanding infinitely.
-      physics: NeverScrollableScrollPhysics(), // To disable GridView's scrolling
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4, // Adjust number of columns to fit your design
-        childAspectRatio: 1, // Adjust child aspect ratio to fit your design
-      ),
-      itemCount: services.length,
-      itemBuilder: (context, index) {
-        final service = services[index];
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              service['isSelected'] = !service['isSelected'];
-              if (services[index]['isSelected']) {
-            widget.updateSelectedServices(services[index]['label'], 120, services[index]['icon']); // Example price
-          }
-            });
-          },
-          child: Card(
-            color: service['isSelected'] ? const Color.fromARGB(255, 159, 159, 159) : Colors.grey[800],
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(service['icon'], color: Colors.white),
-                Text(
-                  service['label'],
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class ServiceEstimateCard extends StatelessWidget {
-  final String service;
-  final IconData iconServ;
-  final int count;
-  final double price;
-  final VoidCallback onAdd;
-  final VoidCallback onSubtract;
-  final VoidCallback onRemoveCard; // Callback to remove the card
-
-  const ServiceEstimateCard({
-    Key? key,
-    required this.service,
-    required this.iconServ,
-    required this.count,
-    required this.price,
-    required this.onAdd,
-    required this.onSubtract,
-    required this.onRemoveCard, // Added parameter for removing the card
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.grey[850],
-      margin: EdgeInsets.all(8),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Icon(iconServ, color: Colors.white), // Replace with appropriate icon
-            SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                service,
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
-              onPressed: onRemoveCard,
-            ),
-            IconButton(
-              icon: Icon(Icons.remove, color: Colors.white),
-              onPressed: onSubtract,
-            ),
-            Text(
-              '$count',
-              style: TextStyle(color: Colors.white),
-            ),
-            IconButton(
-              icon: Icon(Icons.add, color: Colors.white),
-              onPressed: onAdd,
-            ),
-            Text(
-              '\$$price',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
+import 'package:bartenders_and_more/widgets/clientside/homewidgets.dart';
 
 class HomeClientScreen extends StatefulWidget {
   @override
@@ -198,6 +32,31 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
     print(selectedServices);
   }
 
+  void addServiceCount(String serviceLabel) {
+  setState(() {
+    for (var service in selectedServices) {
+      if (service['service'] == serviceLabel) {
+        print(service['count']);
+        service['count']++;
+        print('after');
+        print(service['count']);
+        break; // Exit the loop after updating the service count
+      }
+    }
+  });
+}
+
+void subtractServiceCount(String serviceLabel) {
+  setState(() {
+    for (var service in selectedServices) {
+      if (service['service'] == serviceLabel && service['count'] > 1) {
+        service['count']--;
+        break; // Exit the loop after updating the service count
+      }
+    }
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -206,11 +65,22 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
         title: Text('Home'),
         backgroundColor: Colors.black,
         centerTitle: true,
-        // Add other AppBar properties as needed
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/avatarPlaceholder.png'), // Replace with your image URL
+              // If you have the image as an asset, use AssetImage('path/to/asset')
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
+          Column(
+        children: [
+          Expanded(
+        child:  SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 70.0),
           child: Column(
@@ -296,12 +166,11 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
                 style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
               SizedBox(height: 10),
-              ServicesGrid(updateSelectedServices: updateSelectedServices,),
-              // ... Add your service selection grid ...
+              ServicesGrid(updateSelectedServices: updateSelectedServices, removeServ: removeService),
               SizedBox(height: 24),
               Text(
                 'Estimate',
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
               Text(
@@ -319,10 +188,10 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
                       count: service['count'],
                       price: service['price'],
                       onAdd: () {
-                        // Logic to increment service count
+                        addServiceCount(service['service']);
                       },
                       onSubtract: () {
-                        // Logic to decrement service count
+                        subtractServiceCount(service['service']);
                       },
                       onRemoveCard: () {
                         removeService(service['service']);
@@ -335,50 +204,59 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
           ),
         ),
       ),
-      Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start, // Aligns children at start and end
-          children: [
-            Expanded(
-              child: Container(
-                      height: 48, // Fixed height
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30), // Adjust for rounded corners
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color.fromRGBO(130, 91, 51, 1), // Start color
-                            Color.fromRGBO(232, 218, 191, 1), // Middle color
-                            Color.fromRGBO(130, 91, 51, 1), // End color, same as start color
-                          ],
-                        ),
+          ),
+        ],
+          ),
+        Positioned(
+          bottom: 10,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 50, // Height of your custom button
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color.fromRGBO(130, 91, 51, 1),
+                  Color.fromRGBO(232, 218, 191, 1),
+                  Color.fromRGBO(130, 91, 51, 1),
+                ],
+              ),
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                 
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min, // Use only the minimum space needed
+                  children: <Widget>[
+                    Text(
+                      "\$450 - Proceed   ",
+                      style: TextStyle(
+                        color: Colors.black, // Set the text color to black
+                        fontSize: 18,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/homeClient');
-                        },
-                        child: Text(
-                          'Accept',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.transparent, // Make the button background transparent
-                          onSurface: Colors.transparent, // Ensure overlay colors are transparent too
-                          shadowColor: Colors.transparent, // No shadow for transparent background
-                          elevation: 0, // Remove elevation
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30), // Match the container's border radius
-                          ),
-                        ),
-                      ),
-                    ),), // Takes all available space, pushing the button to the bottom
-            
-          ],
-      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward, // Add arrow forward icon
+                      color: Colors.black, // Set the icon color to black
+                    ),
+                  ],
+                ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.transparent,
+                onSurface: Colors.transparent,
+                shadowColor: Colors.transparent,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
       ), 
       

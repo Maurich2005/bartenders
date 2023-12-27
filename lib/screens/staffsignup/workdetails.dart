@@ -208,7 +208,7 @@ class WorkDetailsScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/termsClient');
+                    Navigator.pushNamed(context, '/termsStaff');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min, // Use only the minimum space needed

@@ -18,6 +18,7 @@ import 'package:bartenders_and_more/screens/createnewpassword.dart';
 import 'package:bartenders_and_more/screens/staffsignup/availability.dart';
 import 'package:bartenders_and_more/screens/staffsignup/backgroundcheck.dart';
 import 'package:bartenders_and_more/screens/clientscreens/homeclient.dart';
+import 'package:bartenders_and_more/screens/staffsignup/termsstaff.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/workDetails': (context) => WorkDetailsScreen(),
         '/availability': (context) => AvailabilityScreen(),
         '/backgroundCheck': (context) => BackgroundCheckScreen(),
+        '/termsStaff': (context) => TermsConditionsStaffScreen(),
         ///
         '/sendVerificationForgotPassword': (context) => ForgotPasswordScreen(),
         '/emailVerificationForgotPassword': (context) => EmailVerificationForgotScreen(),
