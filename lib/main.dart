@@ -1,5 +1,6 @@
-import 'package:bartenders_and_more/screens/staffsignup/verifyemailstaff.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:bartenders_and_more/screens/staffsignup/verifyemailstaff.dart';
 import 'package:bartenders_and_more/screens/walkthough.dart';
 import 'package:bartenders_and_more/widgets/splashwidget.dart';
 import 'package:bartenders_and_more/screens/signin.dart';
@@ -20,7 +21,11 @@ import 'package:bartenders_and_more/screens/staffsignup/backgroundcheck.dart';
 import 'package:bartenders_and_more/screens/clientscreens/homeclient.dart';
 import 'package:bartenders_and_more/screens/staffsignup/termsstaff.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,15 +35,12 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
       routes: {
         '/walkthrough': (context) => WalkthroughScreen(),
-        ///
         '/signin': (context) => SignInScreen(),
         '/join': (context) => JoinAsRoleScreen(),
-        ///
         '/joinClient': (context) => LocationScreen(),
         '/signupClient': (context) => SignUpClientScreen(),
         '/termsClient': (context) => TermsConditionsClientScreen(),
         '/emailVerification': (context) => EmailVerificationScreen(),
-        ///
         '/joinStaff': (context) => LocationScreenStaff(),
         '/signupStaff': (context) => SignUpStaffScreen(),
         '/emailVerificationStaff': (context) => EmailVerificationStaffScreen(),
@@ -47,14 +49,12 @@ class MyApp extends StatelessWidget {
         '/availability': (context) => AvailabilityScreen(),
         '/backgroundCheck': (context) => BackgroundCheckScreen(),
         '/termsStaff': (context) => TermsConditionsStaffScreen(),
-        ///
         '/sendVerificationForgotPassword': (context) => ForgotPasswordScreen(),
         '/emailVerificationForgotPassword': (context) => EmailVerificationForgotScreen(),
         '/createnewpassword': (context) => CreateNewPassword(),
-        ///
         '/homeClient': (context) => HomeClientScreen(),
+        // Add the rest of your routes here
       },
     );
   }
 }
-

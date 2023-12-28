@@ -2,6 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+Future<UserCredential?> signInWithGoogle() async {
+  try {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // If canceled, return null
+    if (googleUser == null) return null;
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+    // Create a new credential
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  } on FirebaseAuthException catch (e) {
+    // Handle error, could log the error or display a message to the user
+    print(e.message);
+    return null;
+  }
+}
 
 
 class DividerWithText extends StatelessWidget {
@@ -53,8 +81,12 @@ class SignInButtons extends StatelessWidget {
           text: 'Continue with Google',
           color: Colors.white,
           textColor: Colors.black,
-          onPressed: () {
-            // Implement your Firebase Authentication logic for Google sign-in here
+          onPressed: () async {
+            UserCredential? userCredential = await signInWithGoogle();
+              if (userCredential != null) {
+                // The user is signed in
+                // Navigate to your app's home screen or another appropriate screen
+              }
           },
         ),
         SizedBox(height: 12),
