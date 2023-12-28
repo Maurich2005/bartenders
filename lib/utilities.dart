@@ -83,7 +83,8 @@ class SignInButtons extends StatelessWidget {
           textColor: Colors.black,
           onPressed: () async {
             UserCredential? userCredential = await signInWithGoogle();
-              if (userCredential != null) {
+              if (userCredential != null && userCredential.user != null ) {
+                userCredential.user?.email;
                 // The user is signed in
                 // Navigate to your app's home screen or another appropriate screen
               }
