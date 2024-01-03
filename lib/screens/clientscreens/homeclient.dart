@@ -227,7 +227,7 @@ void subtractServiceCount(String serviceLabel) {
             ),
             child: ElevatedButton(
               onPressed: () {
-                 
+                 Navigator.pushNamed(context, '/partyDetails');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min, // Use only the minimum space needed

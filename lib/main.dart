@@ -1,3 +1,6 @@
+import 'package:bartenders_and_more/screens/clientscreens/confirmPartyDetails.dart';
+import 'package:bartenders_and_more/screens/clientscreens/dashboardCL.dart';
+import 'package:bartenders_and_more/screens/clientscreens/partyDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:bartenders_and_more/screens/staffsignup/verifyemailstaff.dart';
@@ -20,6 +23,8 @@ import 'package:bartenders_and_more/screens/staffsignup/availability.dart';
 import 'package:bartenders_and_more/screens/staffsignup/backgroundcheck.dart';
 import 'package:bartenders_and_more/screens/clientscreens/homeclient.dart';
 import 'package:bartenders_and_more/screens/staffsignup/termsstaff.dart';
+import 'package:bartenders_and_more/screens/clientscreens/partyDetails.dart';
+import 'package:bartenders_and_more/screens/clientscreens/confirmPartyDetails.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,8 +57,11 @@ class MyApp extends StatelessWidget {
         '/sendVerificationForgotPassword': (context) => ForgotPasswordScreen(),
         '/emailVerificationForgotPassword': (context) => EmailVerificationForgotScreen(),
         '/createnewpassword': (context) => CreateNewPassword(),
+        // Clients Screens
         '/homeClient': (context) => HomeClientScreen(),
-        // Add the rest of your routes here
+        '/partyDetails' : (context) => PartyDetailsPage(),
+        '/confirmPartyDetails' :(context) => PreviewPartyDetailsPage(),
+        '/dashboardClient' : (context) => DashboardClient()
       },
     );
   }

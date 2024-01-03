@@ -36,6 +36,7 @@ dependencies:
   firebase_auth: ^4.15.3
   image_picker: ^1.0.4
   google_sign_in: ^6.1.6
+  intl: ^0.19.0
   dotted_border: ^2.1.0
   file_picker: ^6.1.1
   # The following adds the Cupertino Icons font to your application.
@@ -75,6 +76,8 @@ flutter:
     - assets/apple_logo.svg
     - assets/google_logo.svg
     - assets/avatarPlaceholder.png
+    - assets/images/dashboardHomeImage.png
+    - assets/images/teamImage.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
