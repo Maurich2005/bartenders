@@ -159,7 +159,7 @@ class _DashboardClientState extends State<DashboardClient> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/dashboardClient');
+                        Navigator.pushNamed(context, '/searchResults');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.min, // Use only the minimum space needed

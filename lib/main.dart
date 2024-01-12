@@ -1,6 +1,7 @@
 import 'package:bartenders_and_more/screens/clientscreens/confirmPartyDetails.dart';
 import 'package:bartenders_and_more/screens/clientscreens/dashboardCL.dart';
 import 'package:bartenders_and_more/screens/clientscreens/partyDetails.dart';
+import 'package:bartenders_and_more/screens/clientscreens/searchResults.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:bartenders_and_more/screens/staffsignup/verifyemailstaff.dart';
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
         '/homeClient': (context) => HomeClientScreen(),
         '/partyDetails' : (context) => PartyDetailsPage(),
         '/confirmPartyDetails' :(context) => PreviewPartyDetailsPage(),
-        '/dashboardClient' : (context) => DashboardClient()
+        '/dashboardClient' : (context) => DashboardClient(),
+        '/searchResults' : (context) => SearchResults()
       },
     );
   }

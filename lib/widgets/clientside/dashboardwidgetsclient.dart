@@ -185,3 +185,109 @@ class TeamCard extends StatelessWidget {
     );
   }
 }
+
+class SearchResultCard extends StatelessWidget {
+  final String imagePath;
+  final String vendorName;
+  final double rating;
+  final String experience;
+  final String location;
+  final String price;
+
+  SearchResultCard({
+    required this.imagePath,
+    required this.vendorName,
+    required this.rating,
+    required this.experience,
+    required this.location,
+    required this.price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade800),
+      ),
+      margin: EdgeInsets.all(8.0),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(12)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  height: 180, // Reduced height for the card
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            vendorName,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18, // Adjusted font size
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Icon(Icons.star, color: Colors.amber, size: 18),
+                        SizedBox(width: 4),
+                        Text(
+                          '$rating',
+                          style: TextStyle(color: Colors.white, fontSize: 16), // Adjusted font size
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 4),
+                    infoRow(Icons.school, experience),
+                    infoRow(Icons.location_on, location),
+                    infoRow(Icons.attach_money, price),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget infoRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.grey, size: 16),
+        SizedBox(width: 4),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: 14),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+
+
