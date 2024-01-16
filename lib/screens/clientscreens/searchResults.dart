@@ -66,13 +66,18 @@ class _SearchResultsState extends State<SearchResults> {
           children: [
             Container(
             height: 150,
-            child: SearchResultCard(
-              imagePath: 'assets/images/girlSearchResult.png', // Replace with your actual image path
-              vendorName: 'Miriane Piers',
-              rating: 4.9,
-              experience: '10 yrs of experience',
-              location: 'Brookline, MA',
-              price: 'From 25/hr',
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/profileHire');
+              },
+              child: SearchResultCard(
+                imagePath: 'assets/images/girlSearchResult.png',
+                vendorName: 'Miriane Piers',
+                rating: 4.9,
+                experience: '10 yrs of experience',
+                location: 'Brookline, MA',
+                price: 'From 25/hr',
+              ),
             ),
             ),
             Container(

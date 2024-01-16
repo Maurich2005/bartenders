@@ -286,6 +286,207 @@ class SearchResultCard extends StatelessWidget {
   }
 }
 
+class ProfileHireCard extends StatelessWidget {
+  final String imagePath;
+  final String vendorName;
+  final double rating;
+  final String experience;
+  final String location;
+  final String price;
+
+  ProfileHireCard({
+    required this.imagePath,
+    required this.vendorName,
+    required this.rating,
+    required this.experience,
+    required this.location,
+    required this.price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.black),
+      ),
+      margin: EdgeInsets.all(8.0),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(12)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  height: 130, // Reduced height for the card
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // This will create even spacing between all children
+                  children: [
+                    Text(
+                      vendorName,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18, // Adjusted font size
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.amber, size: 18),
+                        SizedBox(width: 4),
+                        Text(
+                          '$rating',
+                          style: TextStyle(color: Colors.white, fontSize: 16), // Adjusted font size
+                        ),
+                      ],
+                    ),
+                    infoRow(Icons.school, experience),
+                    infoRow(Icons.location_on, location),
+                    infoRow(Icons.attach_money, price),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget infoRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.grey, size: 16),
+        SizedBox(width: 4),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: 14),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+class EventPlannerCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        side: BorderSide(color: Colors.grey.shade700),
+      ),
+      color: Colors.black,
+      margin: EdgeInsets.all(8.0),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+              'House Party',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                ),
+              ),
+              Spacer(), // Add a spacer to push everything to the edges
+              Icon(Icons.more_vert, color: Colors.grey),
+            ],
+            ),
+            SizedBox(height: 8),
+            Row(
+              children: [
+                Icon(Icons.calendar_today, color: Colors.grey),
+                SizedBox(width: 8),
+                Text(
+                  'Jan 17, 2024',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Spacer(),
+                Text(
+                  'Hired',
+                  style: TextStyle(color: Colors.grey[400]),
+                ),
+                SizedBox(width: 8),
+                // Avatars next to 'Hired' text
+                CircleAvatar(
+                  backgroundImage: AssetImage('path/to/your/first/image.png'), // Replace with your image path
+                  radius: 12,
+                ),
+                SizedBox(width: 4),
+                CircleAvatar(
+                  backgroundImage: AssetImage('path/to/your/second/image.png'), // Replace with your image path
+                  radius: 12,
+                ),
+                SizedBox(width: 4),
+                CircleAvatar(
+                  backgroundImage: AssetImage('path/to/your/third/image.png'), // Replace with your image path
+                  radius: 12,
+                ),
+                Spacer(),
+              ],
+            ),
+            SizedBox(height: 8),
+            Row(
+              children: [
+                Icon(Icons.location_on, color: Colors.grey),
+                SizedBox(width: 8),
+                Text(
+                  'Park View',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+            //Divider(color: Colors.grey, height: 20), // Divider line
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Details at the bottom of the card
+                TextButton(
+                  onPressed: () {
+                    // Handle Details tap
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        'Details',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(Icons.chevron_right, color: Colors.white),
+                    ],
+                  ),
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 
 
 

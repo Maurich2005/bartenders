@@ -1,6 +1,8 @@
 import 'package:bartenders_and_more/screens/clientscreens/confirmPartyDetails.dart';
 import 'package:bartenders_and_more/screens/clientscreens/dashboardCL.dart';
 import 'package:bartenders_and_more/screens/clientscreens/partyDetails.dart';
+import 'package:bartenders_and_more/screens/clientscreens/planner.dart';
+import 'package:bartenders_and_more/screens/clientscreens/profileHire.dart';
 import 'package:bartenders_and_more/screens/clientscreens/searchResults.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -63,7 +65,9 @@ class MyApp extends StatelessWidget {
         '/partyDetails' : (context) => PartyDetailsPage(),
         '/confirmPartyDetails' :(context) => PreviewPartyDetailsPage(),
         '/dashboardClient' : (context) => DashboardClient(),
-        '/searchResults' : (context) => SearchResults()
+        '/searchResults' : (context) => SearchResults(),
+        '/profileHire' :(context) => ProfileHireScreen(),
+        '/planner':(context) => PlannerScreen()
       },
     );
   }
